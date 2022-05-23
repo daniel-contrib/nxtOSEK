@@ -9,6 +9,8 @@ cd "$PROJECT_ROOT"
 # Prerequisites
 sudo apt-get update
 sudo apt-get install wget curl git subversion
+cd "$SCRIPT_DIR"
+chmod +x *.sh
 
 # Install Docker
 echo "Downloading Github repo: danielk-98/docker-scripts"
@@ -23,6 +25,7 @@ fi
 if [ ! -x "$(command -v docker)" ]; then
     echo "Docker not detected. Installing now..."
     cd "$SCRIPT_DIR/docker-scripts"
+    chmod +x *.sh
     "./install-docker.sh"
 else
     echo "It appears Docker has already been installed. Skipping..."
@@ -65,7 +68,8 @@ if [ $WSL == 'true' ]; then
     if [ ! -f "/etc/default/usbip-automount" ]; then
         echo "Installing USB-IP for WSL..."
         cd "$SCRIPT_DIR/wsl-usb-scripts"
-        ./install.sh
+        chmod +x *.sh
+        "./install.sh"
     else
         echo "It appears wsl-usb-scripts has already been installed. Skipping..."
     fi
