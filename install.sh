@@ -85,10 +85,17 @@ if [ $WSL == 'true' ]; then
     service usbip-automount start
 fi
 
+echo " "
+echo "Linux Host configuration complete!"
+echo " "
+read -p "Should we download the latest nxtOSEK image now? (This will take some time) (Y/N): " yn
+case $yn in
+    [Yy]* ) "$SCRIPT_DIR/download_release.sh";;
+    * ) echo "You can download this release at a later time by running './scripts/download_release.sh'";;
+esac
+
 cd "$WORKING_DIR"
 
-echo " "
-echo "Linux Host configuration for nxtOSEK complete!"
-echo "Please restart your system now before continuing."
-echo " "
+echo "Script is complete."
+echo "Please restart your machine before continuing."
 
