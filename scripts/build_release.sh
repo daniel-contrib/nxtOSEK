@@ -23,8 +23,10 @@ svn checkout http://svn.code.sf.net/p/bricxcc/code/
 #tar -cvf bricxcc.tar "bricxcc"
 
 # Build and save docker image
-cd "$PROJECT_ROOT/docker_image"
+cd "$PROJECT_ROOT"
 "$SCRIPT_DIR/docker-scripts/build-image-fresh.sh" nxtosek:latest
+mkdir -p "$PROJECT_ROOT/docker_image"
+cd "$PROJECT_ROOT/docker_image"
 "$SCRIPT_DIR/docker-scripts/save-image.sh" nxtosek:latest 1G
 
 
