@@ -1,0 +1,4 @@
+
+# This template makefile is needed for backward compatibility
+
+include $(NXTOSEK)/ecrobot/ecrobot.mak

@@ -1,0 +1,10 @@
+-e if (( $# == 1 ))
+-e then
+-e   COM=$1
+-e else
+-e   COM=usb
+-e fi
+-e echo "Executing NeXTTool to upload helloworld.rxe to device: COM=$COM ..."
+-e wine ../bin/nexttool /COM=$COM -download=helloworld.rxe
+-e wine ../bin/nexttool /COM=$COM -listfiles=helloworld.rxe
+-e echo NeXTTool is terminated.

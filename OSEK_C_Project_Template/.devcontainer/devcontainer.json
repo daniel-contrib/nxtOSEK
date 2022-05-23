@@ -1,0 +1,46 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.231.6/containers/ubuntu
+{
+	"image": "nxtosek:latest",
+
+	// An array of Docker CLI arguments that should be used when running the container. 
+	//"runArgs": [ "--net=host", "--privileged", "--cap-add=SYS_ADMIN", "--cap-add=NET_ADMIN"],
+	"runArgs": [
+//		"-v \"/var/run/dbus:/var/run/dbus:z\"",
+    	"--privileged"
+//		"--device=/dev/bus/usb"
+	],
+
+	// An array of additional mount points to add to the container when created.
+	// Each value is a string that accepts the same values as the Docker CLI --mount flag.
+	// Environment and pre-defined variables may be referenced in the value.
+	// Codespaces ignores "bind" mounts with the exception of the Docker socket. Volume mounts are still allowed.
+	"mounts": [
+ 	//source=/dev/bus/usb,target=/dev/bus/usb,type=bind",
+    //"source=/var/run/dbus,target=/var/run/dbus,type=bind"
+	],
+	"workspaceMount": "source=${localWorkspaceFolder},target=/home/nxtosek/projects/${localWorkspaceFolderBasename},type=bind",
+	"workspaceFolder": "/home/nxtosek/projects/${localWorkspaceFolderBasename}",
+	
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"ms-vscode.cpptools",
+		"EhabHelaly.oil",
+		"tomoki1207.pdf",
+		"actboy168.tasks"
+	],
+
+	// Overrides the user for all operations run as inside the container.
+	// Defaults to either root or the last USER instruction in the related Dockerfile used to create the image.
+	"containerUser": "nxtosek",
+
+	// A command string or list of command arguments to run on the host machine before the container is created.
+	//"initializeCommand": "sudo sysctl -w vm.mmap_min_addr=0 && sudo killall -9 bluetoothd && sudo cp 70-nxt.rules /etc/udev/rules.d/ && sudo udevadm control --reload-rules",
+
+	// Use 'postCreateCommand' to run commands (inside the container) after the container is created.
+	// "postCreateCommand": "service dbus start && bluetoothd",
+
+	// Set *default* container specific settings.json values on container create.
+	"settings": { 
+    }
+}
