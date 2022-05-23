@@ -19,13 +19,18 @@ Versions 3.01+ are unofficial releases intended to modernize the NXT-OSEK toolch
  - Provide general usability improvements
  - Future-proof the setup as much as possible to maintain compatibility for years to come.
 
-## **Current Features:**
+## **Installation:**
+Please see INSTALL.md for setup and usage instructions.
+
+## **New Features:**
 - Fully encapsulated nxtOSEK development environment using Docker
   
     The provided Docker image contains all necessary compilers, scripts, tools, pre-installed and working.
     This eliminates most external dependencies and simplifies the deployment process.
 
-- Linux (Ubuntu) and WSL2 support
+- Support for Debian-based Linux distros, including WSL2 on Windows 11.
+  
+- Included installer automatically configures your system for Docker and USB-passthrough.
 
 - Visual Studio Code (VSCode) integration
   
@@ -33,30 +38,19 @@ Versions 3.01+ are unofficial releases intended to modernize the NXT-OSEK toolch
 
 - ARM-NONE-EABI cross-compiler
 
+    Does not require custom builds or outdated dependencies.
+
 - Includes all required tools for interfacing with the NXT
 
     Latest versions of John Hansen's NeXTTool and Roman Shaposhnik's LibNXT (fwexec and fwflash) are included in the Docker image.
 
-- Templates for OSEK C and OSEK C++ VSCode projects
-
-    Starting a new program with nxtOSEK is now very simple:
-
-    1. Copy "OSEK_C_Project_Template" or "OSEK_C++_Project_Template" to anywhere on your system and rename as desired.
-    2. In VSCode, File->Open Workspace from File... and select the "project.code-workspace" in the template folder.
-        A new Docker container is automatically built from the nxtOSEK image containing all required tools and settings for your project.
-    3. Add source code to ./src, modify the OSEK task configuration in ./project.oil, and edit compiler options in ./Makefile.
-        Important files are annotated for easy configuration.
-    4. From your project root, run "make all".
-    5. Download your program to the NXT using "./rxe-app-download.sh"
+- Quick-start Templates for OSEK C and OSEK C++ VSCode projects 
 
 
 
 ## **Planned Features:**
-- More/better documentation
 - Better support for multiple NXTs (need to set which USB/Bluetooth device is targeted by tool scripts)
 - Fix broken compile process for nxtOSEK's appflash utility (what deps do we need to have for this?)
-- Split Docker image into multiple parts so Github Releases can be used to distribute it.
-- Automatic detection and attachment of NXT devices to WSL
 - VSCode integration with OpenOCD/GDB for real-time NXT debugging (requires an NXT hardware mod!)
 - Project templates for JSP kernel (OSEK has a few kernel bugs; JSP may work better?)
 - Better support for custom kernel and/or tool modifications
@@ -73,8 +67,7 @@ Versions 3.01+ are unofficial releases intended to modernize the NXT-OSEK toolch
 - Added Linux (Ubuntu) support.
 
     Official installation instructions for Linux no longer work. Docker fixes this.
-    The Docker image is tested and working on Ubuntu 20.04, but will likely work on other Linux distros without
-    substantial modification.
+    Any recent Linux system capable of running Docker should work. 
 
 - Added Windows support through WSL2.
 
@@ -97,13 +90,17 @@ Versions 3.01+ are unofficial releases intended to modernize the NXT-OSEK toolch
 
     Now an NXTOSEK project folder can be located anywhere on the system. Requires an environment variable NXTOSEK to point to the root path of nxtOSEK (this is set automatically within the Docker image)
 
-- Added required NXT tools
+- Added required NXT tools to NXT-OSEK build process (libNXT and nexttool)
 
 - Added templates for OSEK C and OSEK C++ VSCode projects
+
+    Simplifies creation of new nxtOSEK programs. See README.txt inside the project template folder.
 
 - Added documentation folder with some useful resources for OSEK development
 
 - Updated all sample projects to use new makefile structure
+
+    "make all" can be called from anywhere as long as the NXTOSEK environment variable is set.
 
 
 ### What's new in 3.00 (January 2014)
