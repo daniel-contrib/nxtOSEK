@@ -6,7 +6,7 @@ echo "Usage: flash-bios-firmware.sh [COM]
   - COM is either 'usb' (default) or another valid nexttool alias
 "
 
-FIRMWARE="$NXTOSEK/firmware/nxt_bios_rom_3.00.rfw"
+FIRMWARE="$NXTOSEK/firmware/nxt_bios_rom_1.04.rfw"
 if (( $# == 0 )); then
   COM=usb
 elif (( $# == 1 )); then

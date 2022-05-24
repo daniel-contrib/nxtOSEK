@@ -351,7 +351,11 @@ endif
 	@echo "Removing map files"
 	@rm -f *.map
 	@echo "Removing upload scripts"
-	@rm -f *.sh
+	@rm -f ./$(BIOSFLASH)
+	@rm -f ./$(APPFLASH)
+	@rm -f ./$(RAMBOOT)
+	@rm -f ./$(RXEFLASH)
+	@rm -f ./$(RXEFWFLASH)
 
 ifneq "$(MAKECMDGOALS)" "clean"
   -include $(dependencies)

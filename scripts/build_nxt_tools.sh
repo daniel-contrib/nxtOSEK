@@ -6,7 +6,7 @@ VERSION=$(cat "$PROJECT_ROOT/VERSION")
 WSL=$(if grep -q microsoft /proc/version; then echo 'true'; else echo 'false'; fi)
 INSTALL_DIR="/usr/local/bin"
 
-sudo apt-get install --no-install-recommends gcc g++ build-essential fpc libusb-0.1-4 libusb-dev scons python
+sudo apt-get install --no-install-recommends git subversion gcc g++ build-essential fpc libusb-0.1-4 libusb-dev scons python
 
 # Download BricxCC, build NeXTTool, install
 mkdir -p "/tmp/bricxcc"
