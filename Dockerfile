@@ -26,6 +26,9 @@ RUN groupadd -f --gid $USER_GID $USERNAME \
 # Software required for running 3rd party tools \
  && apt-get -y install --no-install-recommends \
     libusb-0.1-4 \
+# Add bluetooth support \
+ && apt-get install -y --no-install-recommends \
+    bluez bluetooth \
 # Software required for building 3rd party tools \
 #&& apt-get -y install --no-install-recommends \
 #   gcc g++ build-essential fpc libusb-dev scons python \
@@ -41,12 +44,12 @@ RUN groupadd -f --gid $USER_GID $USERNAME \
 #&& chmod +x ./fwexec \
 #&& cp ./fwflash ${NXT_TOOLS_DIR}/fwflash \
 #&& cp ./fwexec ${NXT_TOOLS_DIR}/fwexec \
-# Install ARM cross-compiler and debuggers \
+# Install ARM cross-compiler \
  && apt-get -y install --install-recommends \
-    usbutils gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-none-eabi-newlib gdb-multiarch openocd \
-# Add bluetooth support \
- && apt-get install -y --no-install-recommends \
-    bluez bluetooth \
+    gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-none-eabi-newlib \
+# Install JTAG debugger support \
+ && apt-get -y install --no-install-recommends \
+    usbutils gdb-multiarch openocd libusb-0.1-4 libusb-dev libftdi1 libftdi-dev \
 # Install wine and Xvfb virtual frame buffer (required for wine-headless) \
  && dpkg --add-architecture i386 \
  && wget -nc https://dl.winehq.org/wine-builds/winehq.key \
