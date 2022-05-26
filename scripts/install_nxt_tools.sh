@@ -44,13 +44,14 @@ if [ -x "$(command -v docker)" ]; then
         git pull origin master
     fi
 
-    echo "Building libnxt..."
+    echo "Building LibNXT..."
     cd "$SRC_DIR/libnxt"
     make
-    sudo cp -f "./out/fwflash" "$INSTALL_DIR/fwflash"
-    sudo cp -f "./out/fwexec" "$INSTALL_DIR/fwexec"
     
     echo "Installing fwexec and fwflash to $INSTALL_DIR..."
+    cd "$SRC_DIR/libnxt/out"
+    sudo cp -f "./fwflash" "$INSTALL_DIR/fwflash"
+    sudo cp -f "./fwexec" "$INSTALL_DIR/fwexec"
     cd "$INSTALL_DIR"
     sudo chown root:root "./fwflash"
     sudo chmod a+s "./fwflash"

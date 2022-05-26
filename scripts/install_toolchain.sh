@@ -13,13 +13,17 @@ sudo apt-get update
 sudo apt-get -y install --no-install-recommends \
     wget gnupg software-properties-common
 
-# Install ARM cross-compiler and debuggers
+# Install ARM cross-compiler
 sudo apt-get -y install --install-recommends \
-    make usbutils gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-none-eabi-newlib gdb-multiarch openocd
+    make gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-none-eabi-newlib 
+
+# Install JTAG debugger support
+sudo apt-get -y install --no-install-recommends \
+    usbutils gdb-multiarch openocd libusb-0.1-4 libusb-dev libftdi1 libftdi-dev
 
 # Install wine-headless script
+chmod +x "$SCRIPTS_DIR/wine-headless.sh"
 sudo cp -f "$SCRIPTS_DIR/wine-headless.sh" "/usr/local/bin/wine-headless"
-sudo chmod +x "/usr/local/bin/wine-headless"
 
 # Install wine and Xvfb virtual frame buffer (required for wine-headless)
 if [ ! -x "$(command -v wine)" ]; then
