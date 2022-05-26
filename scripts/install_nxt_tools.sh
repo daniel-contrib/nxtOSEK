@@ -10,8 +10,8 @@ WSL=$(if grep -q microsoft /proc/version; then echo 'true'; else echo 'false'; f
 INSTALL_DIR="/usr/local/bin"
 
 sudo apt-get update
-sudo apt-get install --no-install-recommends git subversion gcc g++ build-essential fpc libusb-0.1-4 libusb-dev
-
+sudo apt-get install -y --no-install-recommends \
+    git subversion gcc g++ build-essential fpc libusb-0.1-4 libusb-dev
 
 # Download BricxCC, build NeXTTool, install
 echo "Downloading repository: http://svn.code.sf.net/p/bricxcc/code/"

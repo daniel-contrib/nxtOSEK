@@ -109,6 +109,17 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     "./install_nxt_tools.sh"
 fi
 
+# Add bluetooth support
+echo
+echo "${bold}Bluetooth${normal}"
+read -r -p "${bold}Install Bluetooth services? (Y/N): ${normal} " 
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    cd "$SCRIPTS_DIR"
+    sudo apt-get install -y --no-install-recommends \
+        bluez bluetooth
+fi
+
 # NXTOSEK and Toolchain
 echo
 echo "${bold}nxtOSEK Toolchain${normal}"

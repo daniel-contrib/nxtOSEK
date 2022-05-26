@@ -17,10 +17,6 @@ sudo apt-get -y install --no-install-recommends \
 sudo apt-get -y install --install-recommends \
     make usbutils gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-none-eabi-newlib gdb-multiarch openocd
 
-# Add bluetooth support
-sudo apt-get install -y --no-install-recommends \
-    bluez bluetooth
-
 # Install wine-headless script
 sudo cp -f "$SCRIPTS_DIR/wine-headless.sh" "/usr/local/bin/wine-headless"
 sudo chmod +x "/usr/local/bin/wine-headless"
