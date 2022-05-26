@@ -1,33 +1,27 @@
 #!/usr/bin/env bash
-WORKING_DIR="$PWD"
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-PROJECT_ROOT="$SCRIPT_DIR/.."
-VERSION=$(cat "$PROJECT_ROOT/VERSION")
+WORKING_DIR=$PWD
+SCRIPTS_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+ROOT_DIR="$(dirname "$SCRIPTS_DIR")"
+CONFIG_DIR="$ROOT_DIR/config"
+SRC_DIR="$ROOT_DIR/src"
+VERSION=$(cat "$ROOT_DIR/VERSION")
 WSL=$(if grep -q microsoft /proc/version; then echo 'true'; else echo 'false'; fi)
 
-
-# Download LibNXT
-cd "$PROJECT_ROOT/src"
-if [ ! -d "./libnxt" ]; then
-    git clone https://github.com/rvs/libnxt.git
-else
-    git pull origin master
-fi
-#tar -cvf libnxt.tar "libnxt"
-
-# Download BricxCC
-mkdir -p "$PROJECT_ROOT/src/bricxcc"
-cd "$PROJECT_ROOT/src/bricxcc"
-svn checkout http://svn.code.sf.net/p/bricxcc/code/
-#cd "$PROJECT_ROOT/src"
-#tar -cvf bricxcc.tar "bricxcc"
+# Build the NXT tools locally first
+echo "Building NXT tools..."
+cd "$SCRIPTS_DIR"
+"./install_nxt_tools.sh"
 
 # Build and save docker image
-cd "$PROJECT_ROOT"
-"$SCRIPT_DIR/docker-scripts/build-image-fresh.sh" nxtosek:latest
-mkdir -p "$PROJECT_ROOT/docker_image"
-cd "$PROJECT_ROOT/docker_image"
-"$SCRIPT_DIR/docker-scripts/save-image.sh" nxtosek:latest 1G
+echo "Building Docker image..."
+cd "$ROOT_DIR"
+#"$SCRIPTS_DIR/docker-scripts/build-image-fresh.sh" nxtosek:latest
+
+echo "Saving Docker image to $ROOT_DIR/docker_image..."
+rm -rf "$ROOT_DIR/docker_image"
+mkdir -p "$ROOT_DIR/docker_image"
+cd "$ROOT_DIR/docker_image"
+"$SCRIPTS_DIR/docker-scripts/save-image.sh" nxtosek:latest 1G
 
 
 cd "$WORKING_DIR"

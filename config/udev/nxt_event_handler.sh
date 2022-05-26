@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
-SERIAL=$1
-KERNEL=$2
-MAJOR=$3
-MINOR=$4
-CONTAINER_IDS=$(docker ps -qf ancestor=nxtosek -f status=running)
+TYPE=$1
+SERIAL=$2
+KERNEL=$3
+MAJOR=$4
+MINOR=$5
+
+if [ -x "$(command -v docker)" ]; then
+  CONTAINER_IDS=$(docker ps -qf ancestor=nxtosek -f status=running)
+fi
 
 LOGFILE_DIR="/tmp/nxt"
 LOGFILE="nxt-events.log"
@@ -13,6 +17,7 @@ mkdir -p "$LOGFILE_DIR"
 echo "USB Event: 
   ACTION:   $ACTION
   DEVTYPE:  $DEVTYPE
+  TYPE:     $TYPE
   KERNEL:   $KERNEL
   SERIAL:   $SERIAL
   DEVNUM:   $DEVNUM
@@ -24,6 +29,7 @@ echo "USB Event:
   Docker Containers: $CONTAINER_IDS
 " >> "$LOGFILE_DIR/$LOGFILE"
 
+# If any NXTOSEK containers are running, add this device to them.
 if [ $ACTION == "add" ]; then
   IFS=$'\n'
   CONTAINER_IDS=($CONTAINER_IDS)

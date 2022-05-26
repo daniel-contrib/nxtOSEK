@@ -6,7 +6,7 @@ docker run  --rm \
             --interactive \
             --tty \
             --privileged \
-            --mount type=bind,source="$PROJECT_LOCAL_PATH",target="/home/nxtosek/projects/$PROJECT_NAME" \
-            --workdir "/home/nxtosek/projects/$PROJECT_NAME" \
+            --mount type=bind,source="$PROJECT_LOCAL_PATH",target="/home/nxtuser/projects/$PROJECT_NAME" \
+            --workdir "/home/nxtuser/projects/$PROJECT_NAME" \
             nxtosek:latest \
-           "$@" 
+            "$@" 

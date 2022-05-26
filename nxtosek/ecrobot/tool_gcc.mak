@@ -1,14 +1,17 @@
 $(VERBOSE).SILENT:
 
-TARGET_PREFIX := arm-none-eabi
+ifndef COMPILER_PREFIX
+COMPILER_PREFIX := arm-none-eabi
+endif
+
+ifdef COMPILER_ROOT
+CROSS := $(COMPILER_ROOT)/$(COMPILER_PREFIX)-
+else
+CROSS := $(COMPILER_PREFIX)-
+endif
 
 MKDIR = mkdir -p
 TOUCH = touch
-
-CROSS = $(TARGET_PREFIX)-
-ifdef GNUARM_ROOT
-CROSS = $(GNUARM_ROOT)/bin/$(TARGET_PREFIX)-
-endif
 
 CC       = "$(CROSS)gcc"
 CXX	     = "$(CROSS)g++"
@@ -17,6 +20,13 @@ AR       = "$(CROSS)ar"
 LD       = "$(CROSS)g++" -nostartfiles
 OBJCOPY  = "$(CROSS)objcopy"
 
+# Need Wine to run OSEK System Generator (sg.exe) on Linux
+# (Technically wine is not necessary on WSL; may offer wine-less WSL option in the future to save space?)
+ifndef WINECMD
+WINECMD := /usr/local/bin/wine-headless
+endif
+
+# Names of utility scripts
 BIOSFLASH = flash-bios-firmware.sh
 APPFLASH  = flash-bios-app.sh
 RXEFWFLASH = flash-rxe-firmware.sh
@@ -42,7 +52,6 @@ CFLAGS = -c -ffreestanding -fsigned-char -mcpu=arm7tdmi \
 ## for C++ (.cc and .cpp)
 ## Note that C++ RTTI is disabled by -fno-rtti option
 #
-
 ifdef ECROBOT_CPP_ROOT
 # for .cpp
 CXX_PATH = $(addprefix -I ,$(ECROBOT_CPP_ROOT)/device) $(addprefix -I ,$(ECROBOT_CPP_ROOT)/util)

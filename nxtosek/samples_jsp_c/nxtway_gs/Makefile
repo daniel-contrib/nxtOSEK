@@ -21,4 +21,7 @@ TOPPERS_JSP_CFG_SOURCE = ./nxtway_gs.cfg
 
 # below part should not be modified
 O_PATH ?= build
+ifndef NXTOSEK
+    NXTOSEK = /usr/local/src/nxtosek
+endif
 include $(NXTOSEK)/ecrobot/ecrobot.mak

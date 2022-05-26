@@ -12,4 +12,7 @@ BUILD_MODE = ROM_ONLY
 
 # Don't modify below part
 O_PATH ?= build
+ifndef NXTOSEK
+    NXTOSEK = /usr/local/src/nxtosek
+endif
 include $(NXTOSEK)/ecrobot/ecrobot.mak

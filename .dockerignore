@@ -1,9 +1,8 @@
 .vscode/
 docker_image/
-udev/
+config/udev/
 scripts/docker-scripts/
 scripts/wsl-usb-scripts/
 *Project_Template/
 .gitignore
-install.sh
 nxtOSEK.code-workspace

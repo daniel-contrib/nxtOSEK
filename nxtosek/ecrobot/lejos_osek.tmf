@@ -1,4 +1,7 @@
 
 # This template makefile is needed for backward compatibility
 
+ifndef NXTOSEK
+    NXTOSEK = /usr/local/src/nxtosek
+endif
 include $(NXTOSEK)/ecrobot/ecrobot.mak

@@ -18,4 +18,7 @@ TOPPERS_OSEK_OIL_SOURCE := ./nxtway_gs.oil
 
 # below part should not be modified
 O_PATH ?= build
+ifndef NXTOSEK
+    NXTOSEK = /usr/local/src/nxtosek
+endif
 include $(NXTOSEK)/ecrobot/ecrobot.mak

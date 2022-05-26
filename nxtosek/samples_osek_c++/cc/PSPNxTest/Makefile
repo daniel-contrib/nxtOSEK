@@ -30,4 +30,7 @@ C_OPTIMISATION_FLAGS = -Os
 
 O_PATH ?= build
 
+ifndef NXTOSEK
+    NXTOSEK = /usr/local/src/nxtosek
+endif
 include $(NXTOSEK)/ecrobot/ecrobot.mak

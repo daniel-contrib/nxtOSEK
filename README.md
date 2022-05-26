@@ -12,53 +12,62 @@ NXT-OSEK provides realtime kernels based on
 an NXT-compatible C/C++ compiler,
 and device driver APIs for easy access to LEGO hardware.
 
-The original nxtOSEK project has been abandoned by its original authors.
+The original nxtOSEK project is no longer being maintained by its original authors.
 Versions 3.01+ are unofficial releases intended to modernize the NXT-OSEK toolchain with the following goals:
  - Fix long-standing bugs
  - Improve support on both Linux and Windows
  - Provide general usability improvements
  - Future-proof the setup as much as possible to maintain compatibility for years to come.
 
-## **Installation:**
-Please see INSTALL.md for setup and usage instructions.
+## **Installation and Usage:**
+Please see `INSTALL.md` for setup and usage instructions.
 
 ## **New Features:**
+- Working install script
+
+    install.sh handles the required system configuration for both local (no-Docker) and Docker installs of the nxtOSEK development environment.
+
 - Fully encapsulated nxtOSEK development environment using Docker
   
-    The provided Docker image contains all necessary compilers, scripts, tools, pre-installed and working.
-    This eliminates most external dependencies and simplifies the deployment process.
+    An optional Docker image (see Releases page) contains all necessary compilers, scripts, tools, pre-installed and working.
 
-- Support for Debian-based Linux distros, including WSL2 on Windows 11.
+- Support for Debian-based Linux distros, including WSL2 on Windows 11
+
+    USB passthrough is automatically configured on WSL2.
   
-- Included installer automatically configures your system for Docker and USB-passthrough.
-
 - Visual Studio Code (VSCode) integration
+
+    C/C++ linting and Intellisense are now working. Preconfigured tasks let you compile and download your program to the NXT with the click of a button!
   
-    VSCode project templates automatically load your code into a Docker container with all the required tools and settings. Preconfigured tasks compile and download your code to the NXT with the click of a button!
+- Build scripts updated for ARM-NONE-EABI cross-compiler
 
-- ARM-NONE-EABI cross-compiler
-
-    Does not require custom builds or outdated dependencies.
+    No longer requires custom compilers or outdated dependencies.
 
 - Includes all required tools for interfacing with the NXT
 
-    Latest versions of John Hansen's NeXTTool and Roman Shaposhnik's LibNXT (fwexec and fwflash) are included in the Docker image.
+    Latest versions of John Hansen's NeXTTool and Roman Shaposhnik's LibNXT (fwexec and fwflash) are available through the install script, and are included by default in the Docker image.
 
 - Quick-start Templates for OSEK C and OSEK C++ VSCode projects 
+
+    Create a new program, compile it, and download it to the NXT in minutes!
 
 
 
 ## **Planned Features:**
-- Better support for multiple NXTs (need to set which USB/Bluetooth device is targeted by tool scripts)
 - Fix broken compile process for nxtOSEK's appflash utility (what deps do we need to have for this?)
 - VSCode integration with OpenOCD/GDB for real-time NXT debugging (requires an NXT hardware mod!)
 - Project templates for JSP kernel (OSEK has a few kernel bugs; JSP may work better?)
-- Better support for custom kernel and/or tool modifications
-- Bluetooth support for WSL
 
 
 ## **Change Log:**
-### What's new in 3.01 (May 2022 - Daniel Kennedy)
+### What's new in 3.02 (May 2022 - Daniel Kennedy)
+- Added option for local nxtOSEK installation (no Docker required!)
+
+    This is currently the recommended way to use nxtOSEK (see `INSTALL.md` for details).
+    The Docker image release is still available and working, and will likely remain working long after the local install option is broken.
+
+
+### What's new in 3.01 (April 2022 - Daniel Kennedy)
 - Added Docker image.
  
     The provided Docker image contains all necessary compilers, scripts, tools, pre-installed and working.

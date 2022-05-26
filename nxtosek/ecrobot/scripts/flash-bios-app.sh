@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
-WORKING_DIR=$PWD
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-WSL=$(if grep -q microsoft /proc/version; then echo 'true'; else echo 'false'; fi)
-
+if [ -z ${NXT_TOOLS_DIR+x} ]; then
+    NXT_TOOLS_DIR="/usr/local/bin"
+fi
+if [ -z ${NXTOSEK+x} ]; then
+    NXTOSEK="/usr/local/src/nxtosek"
+fi
 
 echo "Usage: flash-bios-app.sh [ROMBIN [COM]] 
   - ROMBIN is path to NXT-BIOS binary program file
@@ -23,16 +25,16 @@ elif (( $# == 2 )); then
   ROMBIN=$1
   COM=$2
 else
-  echo "Error: wrong number of arguments"
+  echo "Error: file \"$FIRMWARE\" does not exist"
   exit
 fi
 
 if [ ! -f "$ROMBIN" ]; then
-  echo "Error: file '$ROMBIN' does not exist"
+  echo "Error: file \"$ROMBIN\" does not exist"
   exit
 fi
 
 FSIZE_KB=$(du -k "$ROMBIN" | cut -f1)
-echo "Downloading NXT-BIOS App '$ROMBIN' ($FSIZE_KB kB) to COM=$COM..." 
+echo "Downloading NXT-BIOS App \"$ROMBIN\" ($FSIZE_KB kB) to COM=$COM..." 
 
-"$NXT_TOOLS_DIR/appflash" ./$ROMBIN
+"$NXT_TOOLS_DIR/appflash" "./$ROMBIN"

@@ -1,12 +1,13 @@
 {
     "configurations": [
         {
-            "name": "OSEK_C",
+            "name": "OSEK",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${env:NXTOSEK}/ecrobot/c",
-                "${env:NXTOSEK}/toppers_osek/**",
-                "${env:NXTOSEK}/lejos_nxj/src/nxtvm/**"
+                "/usr/local/src/nxtosek/ecrobot/c",
+                "/usr/local/src/nxtosek/ecrobot/c++/**",
+                "/usr/local/src/nxtosek/toppers_osek/**",
+                "/usr/local/src/nxtosek/lejos_nxj/src/nxtvm/**"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/arm-none-eabi-gcc",

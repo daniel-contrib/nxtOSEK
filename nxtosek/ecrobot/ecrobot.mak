@@ -1,28 +1,27 @@
 # Common Makefile for C/C++(*.cc) with TOPPERS ATK(OSEK) and JSP(ƒÊITRON)
 
-#
-## ROOT path configurations
-#
-ifndef ROOT
-ROOT = $(NXTOSEK)
+ifndef NXTOSEK
+    NXTOSEK = /usr/local/src/nxtosek
 endif
 
-ECROBOT_ROOT = $(ROOT)/ecrobot
-LEJOSNXJSRC_ROOT = $(ROOT)/lejos_nxj/src/
+ECROBOT_ROOT = $(NXTOSEK)/ecrobot
+LEJOSNXJSRC_ROOT = $(NXTOSEK)/lejos_nxj/src/
 
 ifeq ($(TOPPERS_KERNEL), NXT_JSP)
-TOPPERS_ROOT = $(ROOT)/toppers_jsp
+TOPPERS_ROOT = $(NXTOSEK)/toppers_jsp
 else
-TOPPERS_ROOT = $(ROOT)/toppers_osek
+TOPPERS_ROOT = $(NXTOSEK)/toppers_osek
 endif
 
 # 03/11/2009 added by takashic
 ECROBOT_C_ROOT = $(ECROBOT_ROOT)/c
-CXX_ROOT=$(ROOT)/c++
+#ECROBOT_CPP_ROOT = $(ECROBOT_ROOT)/c++
+CXX_ROOT=$(NXTOSEK)/c++
 
-vpath %.c $(LEJOSNXJSRC_ROOT) $(TOPPERS_ROOT) $(ECROBOT_ROOT) $(ECROBOT_C_ROOT)
-vpath %.S $(LEJOSNXJSRC_ROOT) $(TOPPERS_ROOT)
-vpath %.s $(LEJOSNXJSRC_ROOT) $(TOPPERS_ROOT) $(ECROBOT_ROOT) $(ECROBOT_C_ROOT)
+vpath %.c   $(LEJOSNXJSRC_ROOT) $(TOPPERS_ROOT) $(ECROBOT_ROOT) $(ECROBOT_C_ROOT)
+#vpath %.cpp $(ECROBOT_CPP_ROOT)/device $(ECROBOT_CPP_ROOT)/util
+vpath %.S   $(LEJOSNXJSRC_ROOT) $(TOPPERS_ROOT)
+vpath %.s   $(LEJOSNXJSRC_ROOT) $(TOPPERS_ROOT) $(ECROBOT_ROOT) $(ECROBOT_C_ROOT)
 
 ################################################################################
 # TOPPERS ATK/JSP specific settings. By default, TOPPERS ATK is configured as 
@@ -74,9 +73,6 @@ ifeq ($(TOPPERS_KERNEL), NXT_JSP)
 		config/armv4/at91sam7s/irq.s
 
 else
-	# if you need to modify the Makefiles to set absolute path,
-	# TOPPERS_OSEK_ROOT_SG should be defined like...
-	# TOPPERS_OSEK_ROOT_SG = C:/cygwin/nxtOSEK/toppers_osek
 	ifndef TOPPERS_OSEK_ROOT_SG
 		TOPPERS_OSEK_ROOT_SG = $(TOPPERS_ROOT)
 	endif
@@ -286,10 +282,6 @@ $(RXEBIN_TARGET): $(RXE_TARGET)
 	@echo "Generating binary image file: $@"
 	$(OBJCOPY) -O binary $< $@
 
-# on Linux, use wine to run the windows application
-ifndef WINECMD
-WINECMD := /usr/local/bin/wine-headless
-endif
 
 .PHONY: toppers_cfg
 toppers_cfg:

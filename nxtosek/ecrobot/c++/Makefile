@@ -1,10 +1,10 @@
 # Makefile for ECRobot C++(.cpp) library
 
 ROOT = $(NXTOSEK)
-ECROBOT_ROOT = $(ROOT)/ecrobot
-ECROBOT_C_ROOT = $(ROOT)/ecrobot/c
-LEJOSNXJSRC_ROOT = $(ROOT)/lejos_nxj/src/
-TOPPERS_OSEK_ROOT = $(ROOT)/toppers_osek
+ECROBOT_ROOT = $(NXTOSEK)/ecrobot
+ECROBOT_C_ROOT = $(NXTOSEK)/ecrobot/c
+LEJOSNXJSRC_ROOT = $(NXTOSEK)/lejos_nxj/src/
+TOPPERS_OSEK_ROOT = $(NXTOSEK)/toppers_osek
 ECROBOT_CPP_ROOT = $(ECROBOT_ROOT)/c++
 
 LEJOS_PLATFORM_SOURCES_PATH = nxtvm/platform/nxt

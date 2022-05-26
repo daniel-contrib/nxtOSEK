@@ -13,4 +13,7 @@ USER_INC_PATH = $(NXTe_ROOT)
 
 O_PATH ?= build
 
+ifndef NXTOSEK
+    NXTOSEK = /usr/local/src/nxtosek
+endif
 include $(NXTOSEK)/ecrobot/ecrobot.mak

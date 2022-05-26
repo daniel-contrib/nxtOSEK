@@ -10,4 +10,7 @@ TOPPERS_JSP_CFG_SOURCE = ./sample.cfg
 O_PATH ?= build
 
 # makefile for C++(.cpp) build
+ifndef NXTOSEK
+    NXTOSEK = /usr/local/src/nxtosek
+endif
 include $(NXTOSEK)/ecrobot/ecrobot++.mak

@@ -13,4 +13,7 @@ USER_DEF = NO_RUN_ENTER_STOP_EXIT
 O_PATH ?= build
 
 # makefile for C++(.cpp) build
+ifndef NXTOSEK
+    NXTOSEK = /usr/local/src/nxtosek
+endif
 include $(NXTOSEK)/ecrobot/ecrobot++.mak

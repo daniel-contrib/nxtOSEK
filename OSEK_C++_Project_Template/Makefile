@@ -14,7 +14,7 @@ TARGET_CPP_SOURCES = \
 
 #### OSEK .oil files, which configure the RTOS environment and tasks
 TOPPERS_OSEK_OIL_SOURCE = \
-	./project.oil
+	./template.oil
 
 
 #### External source code to include. Each path on its own line, separate lines by \ character.
@@ -63,4 +63,7 @@ TOPPERS_OSEK_OIL_SOURCE = \
 
 #### DO NOT MODIFY
 O_PATH ?= build
+ifndef NXTOSEK
+    NXTOSEK = /usr/local/src/nxtosek
+endif
 include $(NXTOSEK)/ecrobot/ecrobot++.mak

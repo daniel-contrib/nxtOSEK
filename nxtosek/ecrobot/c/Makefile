@@ -2,9 +2,9 @@
 
 # modified to support new directory structure by takashic
 ROOT = $(NXTOSEK)
-ECROBOT_ROOT = $(ROOT)/ecrobot
-LEJOSNXJSRC_ROOT = $(ROOT)/lejos_nxj/src/
-TOPPERS_OSEK_ROOT = $(ROOT)/toppers_osek
+ECROBOT_ROOT = $(NXTOSEK)/ecrobot
+LEJOSNXJSRC_ROOT = $(NXTOSEK)/lejos_nxj/src/
+TOPPERS_OSEK_ROOT = $(NXTOSEK)/toppers_osek
 LEJOS_PLATFORM_SOURCES_PATH = $(LEJOSNXJSRC_ROOT)/nxtvm/platform/nxt
 LEJOS_VM_SOURCES_PATH = $(LEJOSNXJSRC_ROOT)/nxtvm/javavm
 

@@ -2,11 +2,11 @@
 
 # modified to support new directory structure by takshic
 ROOT = $(NXTOSEK)
-ECROBOT_ROOT = $(ROOT)/ecrobot
+ECROBOT_ROOT = $(NXTOSEK)/ecrobot
 # added to support new directory structure by takshic
 ECROBOT_C_ROOT = $(ECROBOT_ROOT)/c
 
-LEJOSNXJSRC_ROOT = $(ROOT)/lejos_nxj/src/
+LEJOSNXJSRC_ROOT = $(NXTOSEK)/lejos_nxj/src/
 
 LEJOS_PLATFORM_SOURCES_PATH = $(LEJOSNXJSRC_ROOT)/nxtvm/platform/nxt
 LEJOS_VM_SOURCES_PATH = $(LEJOSNXJSRC_ROOT)/nxtvm/javavm

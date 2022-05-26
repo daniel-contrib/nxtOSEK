@@ -23,4 +23,7 @@ O_PATH ?= build
 USER_O_PATH = ./$(NXTWAY_GS_DIR)
 
 # makefile for C++(.cpp) build
+ifndef NXTOSEK
+    NXTOSEK = /usr/local/src/nxtosek
+endif
 include $(NXTOSEK)/ecrobot/ecrobot++.mak

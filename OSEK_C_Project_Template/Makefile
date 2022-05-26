@@ -3,8 +3,9 @@ TARGET = OSEK_C_Project
 
 
 #### List of all .c files. Each file on its own line, separate lines by \ character.
-TARGET_SOURCES = \
-	./src/main.c
+TARGET_SOURCES = $(addprefix ./src/, \
+	main.c	\
+)
 
 
 #### OSEK .oil files, which configure the RTOS environment and tasks
@@ -14,8 +15,8 @@ TOPPERS_OSEK_OIL_SOURCE = \
 
 #### External source code to include. Each path on its own line, separate lines by \ character.
 # USER_INC_PATH = \
-#     /usr/lib/libfixmatrix-master				\
-# 	  /usr/lib/libfixmath-master/libfixmath
+#     /usr/local/src/libfixmatrix-master				\
+# 	  /usr/local/src/libfixmath-master/libfixmath
 # VPATH = $(USER_INC_PATH)
 
 
@@ -57,4 +58,7 @@ TOPPERS_OSEK_OIL_SOURCE = \
 
 #### DO NOT MODIFY
 O_PATH ?= build
+ifndef NXTOSEK
+    NXTOSEK = /usr/local/src/nxtosek
+endif
 include $(NXTOSEK)/ecrobot/ecrobot.mak

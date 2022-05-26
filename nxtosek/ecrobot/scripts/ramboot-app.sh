@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
-WORKING_DIR=$PWD
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-WSL=$(if grep -q microsoft /proc/version; then echo 'true'; else echo 'false'; fi)
+if [ -z ${NXT_TOOLS_DIR+x} ]; then
+    NXT_TOOLS_DIR="/usr/local/bin"
+fi
+if [ -z ${NXTOSEK+x} ]; then
+    NXTOSEK="/usr/local/src/nxtosek"
+fi
 
 echo "Usage: ramboot-app.sh [RAMBIN [COM]] 
   - RAMBIN is path to NXT-BIOS binary program file
@@ -34,4 +37,4 @@ fi
 FSIZE_KB=$(du -k "$RAMBIN" | cut -f1)
 echo "Executing '$RAMBIN' ($FSIZE_KB kB) from RAM on COM=$COM..." 
 
-"$NXT_TOOLS_DIR/fwexec" ./$RAMBIN
+"$NXT_TOOLS_DIR/fwexec" "./$RAMBIN"

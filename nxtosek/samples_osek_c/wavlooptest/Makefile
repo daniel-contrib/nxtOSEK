@@ -7,4 +7,7 @@ WAV_SOURCES := \
 	lego_mindstorms_nxt.wav
 
 O_PATH ?= build
+ifndef NXTOSEK
+    NXTOSEK = /usr/local/src/nxtosek
+endif
 include $(NXTOSEK)/ecrobot/ecrobot.mak
