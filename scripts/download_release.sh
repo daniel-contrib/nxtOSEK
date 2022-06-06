@@ -15,7 +15,6 @@ wget -O "nxtosek-latest.tar.part-ab" "https://github.com/daniel-contrib/nxtOSEK/
 wget -O "nxtosek-latest.tar.part-ac" "https://github.com/daniel-contrib/nxtOSEK/releases/download/v$VERSION/nxtosek-latest.tar.part-ac" 
 wget -O "nxtosek-latest.tar.part-ad" "https://github.com/daniel-contrib/nxtOSEK/releases/download/v$VERSION/nxtosek-latest.tar.part-ad" 
 wget -O "nxtosek-latest.tar.part-ae" "https://github.com/daniel-contrib/nxtOSEK/releases/download/v$VERSION/nxtosek-latest.tar.part-ae" 
-wget -O "nxtosek-latest.tar.part-af" "https://github.com/daniel-contrib/nxtOSEK/releases/download/v$VERSION/nxtosek-latest.tar.part-af" 
 
 
 # Install the image
