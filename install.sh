@@ -17,7 +17,7 @@ cd "$SCRIPTS_DIR"
 chmod +x *.sh
 
 # Download latest version of WSL-USB scripts
-echo "Downloading repository: https://github.com/danielk-98/wsl-usb-scripts.git"
+echo "Downloading repository: https://github.com/daniel-scripts/wsl-usb-scripts.git"
 if [ ! -d "$SCRIPTS_DIR/wsl-usb-scripts" ]; then
     cd "$SCRIPTS_DIR"
     git clone https://github.com/danielk-98/wsl-usb-scripts.git
@@ -29,7 +29,7 @@ cd "$SCRIPTS_DIR/wsl-usb-scripts"
 chmod +x *.sh
 
 # Download latest version of Docker scripts
-echo "Downloading repository: https://github.com/danielk-98/docker-scripts.git"
+echo "Downloading repository: https://github.com/daniel-scripts/docker-scripts.git"
 if [ ! -d "$SCRIPTS_DIR/docker-scripts" ]; then
     cd "$SCRIPTS_DIR"
     git clone https://github.com/danielk-98/docker-scripts.git
