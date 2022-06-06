@@ -30,7 +30,7 @@ You need to autoattach both NXT and SAM-BA devices (for downloading firmware); t
 2. Open a new terminal. Clone this repository:
    
     ```
-    git clone https://github.com/danielk-98/nxtOSEK
+    git clone https://github.com/daniel-contrib/nxtOSEK
     ```
 
 3. Run install script:
