@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-WORKING_DIR=$PWD
-SCRIPTS_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+SCRIPTS_DIR="$(dirname "$(readlink -f "$0")")"
 ROOT_DIR="$(dirname "$SCRIPTS_DIR")"
 CONFIG_DIR="$ROOT_DIR/config"
 SRC_DIR="$ROOT_DIR/src"
@@ -22,6 +21,3 @@ rm -rf "$ROOT_DIR/docker_image"
 mkdir -p "$ROOT_DIR/docker_image"
 cd "$ROOT_DIR/docker_image"
 "$SCRIPTS_DIR/docker-scripts/save-image.sh" nxtosek:latest 1G
-
-
-cd "$WORKING_DIR"

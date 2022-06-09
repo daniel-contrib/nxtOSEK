@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-WORKING_DIR=$PWD
-SCRIPTS_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+SCRIPTS_DIR="$(dirname "$(readlink -f "$0")")"
 ROOT_DIR="$(dirname "$SCRIPTS_DIR")"
 CONFIG_DIR="$ROOT_DIR/config"
 SRC_DIR="$ROOT_DIR/src"
@@ -60,6 +59,4 @@ if [ -x "$(command -v docker)" ]; then
 else
     echo "Could not install LibNXT (Docker not installed)."
 fi
-
-cd "$WORKING_DIR"
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-PROJECT_LOCAL_PATH=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+PROJECT_LOCAL_PATH="$(dirname "$(readlink -f "$0")")"
 PROJECT_NAME="$(basename "$PROJECT_LOCAL_PATH")"
 
 docker run  --rm \

@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-WORKING_DIR=$PWD
-SCRIPTS_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+SCRIPTS_DIR="$(dirname "$(readlink -f "$0")")"
 ROOT_DIR="$(dirname "$SCRIPTS_DIR")"
 CONFIG_DIR="$ROOT_DIR/config"
 SRC_DIR="$ROOT_DIR/src"
@@ -19,5 +18,3 @@ wget -O "nxtosek-latest.tar.part-ae" "https://github.com/daniel-contrib/nxtOSEK/
 
 # Install the image
 "$SCRIPTS_DIR/docker-scripts/load-image.sh" nxtosek:latest
-
-cd "$WORKING_DIR"

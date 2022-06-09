@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-WORKING_DIR=$PWD
-ROOT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+ROOT_DIR="$(dirname "$(readlink -f "$0")")"
 CONFIG_DIR="$ROOT_DIR/config"
 SCRIPTS_DIR="$ROOT_DIR/scripts"
 SRC_DIR="$ROOT_DIR/src"
@@ -184,8 +183,6 @@ else
     echo "Skipping option to download nxtOSEK Docker Image."
     echo " (Docker not installed.)"
 fi
-
-cd "$WORKING_DIR"
 
 echo "nxtOSEK Installer is complete."
 echo "Please restart your machine before continuing."
