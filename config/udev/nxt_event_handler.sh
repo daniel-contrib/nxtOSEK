@@ -31,8 +31,8 @@ echo "USB Event:
 
 # If any NXTOSEK containers are running, add this device to them.
 if [ $ACTION == "add" ]; then
-  IFS=$'\n'
-  CONTAINER_IDS=($CONTAINER_IDS)
+  split(){ CONTAINER_IDS=( $CONTAINER_IDS ); }
+  IFS=$'\n' split
   for CONTAINER in ${CONTAINER_IDS[@]}; do
     docker exec -u 0 $CONTAINER mknod $DEVNAME c $MAJOR $MINOR
     docker exec -u 0 $CONTAINER chmod -R 777 $DEVNAME
