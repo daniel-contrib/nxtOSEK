@@ -14,6 +14,3 @@
 docker_image/*
 
 # Exclude downloaded dependencies
-scripts/docker-scripts
-scripts/wsl-usb-scripts
-src/*
