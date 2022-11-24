@@ -27,15 +27,15 @@ You need to autoattach both NXT and SAM-BA devices (for downloading firmware); t
 
 1. Install prerequisite software for your system (see above)
 
-2. Open a new terminal. Clone this repository:
+2. Open a new terminal. Clone this repository *with submodules*:
    
     ```
-    git clone https://github.com/daniel-contrib/nxtOSEK
+    git clone --recursive https://github.com/daniel-contrib/nxtOSEK
     ```
 
 3. Run install script:
     ```
-    cd ./nxtOSEK
+    cd nxtOSEK
     ./install.sh
     ```
     After some preliminary configuration, the script will ask you to download the nxtOSEK Docker image.
