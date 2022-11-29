@@ -1,5 +1,5 @@
 
-# Prereqs
+# PREREQUISITES
 function install_prerequisites() {
     local -a packages=(
         wget curl unzip git gnupg software-properties-common python3 vim
@@ -17,7 +17,7 @@ function install_prerequisites() {
 }
 
 
-# Download latest version of WSL-USB scripts
+# WSL-USB
 function install_wsl_usb() {
     if ! is_wsl; then
         echo "This option is only available on WSL2."
@@ -58,10 +58,11 @@ function install_wsl_usb() {
 }
 
 
-# Download and run latest version of Docker scripts
+# DOCKER
 function install_docker() {
     if [ -x "$(command -v docker)" ]; then
         echo "Docker is already installed."
+        if [[ _AUTOCONFIRM == true ]]; then return; fi;
         if ! confirmation_prompt; then return; fi;
     fi
     local url="https://github.com/daniel-utilities/docker-scripts.git"
@@ -96,68 +97,6 @@ function install_docker() {
     sudo sysctl -w vm.mmap_min_addr=0
 
     rm -rf "$repo_dir"
-}
-
-
-# NXT Tools
-function install_nxt_tools() {
-    local url="https://github.com/daniel-utilities/mindstorms-scripts.git"
-    local branch=main
-    local name="$(basename $url)"; name="${name%.*}"
-    local tmp_dir="/tmp"
-    local repo_dir="$tmp_dir/$name"
-    local install_cmd="install_nxt_tools.sh --skip-prompts true"
-    local original_dir="$pwd"
-    echo ""
-    echo "This will download, build, and install to /usr/local/bin: "
-    echo " 1. John Hansen's NeXTTool (1.2.1.r5) from BricxCC 3.0"
-    echo "    - Required for downloading .rxe binaries to the NXT"
-    echo "    - Required for downloading .rfw firmware to the NXT"
-    echo " 2. Roman Shaposhnik's LibNXT (0.3) (requires Docker)"
-    echo "    - Optional for downloading .rfw firmware to the NXT"
-    echo "    - Required for rambooting programs on the NXT"
-    echo ""
-    echo "The following repository will be downloaded into $repo_dir:" 
-    echo "  URL=$url"
-    echo "  BRANCH=$branch"
-    echo ""
-    echo "Then, the following script will be run:"
-    echo "  $install_cmd"
-    echo ""
-    if ! confirmation_prompt; then return; fi;
-    echo ""
-
-    echo "Downloading repository: $name"
-    cd "$tmp_dir"
-    git_latest "$url" "$branch"
-    cd "$repo_dir"
-
-    echo "Running command: $install_cmd"
-    bash "./$install_cmd"
-    cd "$original_dir"
-
-    rm -rf "$repo_dir"
-}
-
-
-# BLUETOOTH
-function install_bluetooth_services() {
-    local -a packages=(
-        bluetooth bluez
-    )
-    echo ""
-    echo "Bluetooth support allows remote control of the NXT"
-    echo "and remote program download."
-    echo ""
-    echo "The following APT packages will be installed:" 
-    echo "  ${packages[@]}"
-    echo ""
-    if ! confirmation_prompt; then return; fi;
-    echo ""
-
-    echo "Installing Bluetooth support..."
-    sudo apt-get update
-    sudo apt-get install -y --no-install-recommends ${packages[@]}
 }
 
 
@@ -210,6 +149,7 @@ function install_toolchain() {
     echo "Installing Wine..."
     if [ -x "$(command -v wine)" ]; then
         echo "Wine is already installed."
+        if [[ _AUTOCONFIRM == true ]]; then return; fi;
         if ! confirmation_prompt; then return; fi;
     fi
     sudo dpkg --add-architecture i386
@@ -226,4 +166,64 @@ function install_toolchain() {
 }
 
 
+# NXT TOOLS
+function install_nxt_tools() {
+    local url="https://github.com/daniel-utilities/mindstorms-scripts.git"
+    local branch=main
+    local name="$(basename $url)"; name="${name%.*}"
+    local tmp_dir="/tmp"
+    local repo_dir="$tmp_dir/$name"
+    local install_cmd="install_nxt_tools.sh --skip-prompts true"
+    local original_dir="$pwd"
+    echo ""
+    echo "This will download, build, and install to /usr/local/bin: "
+    echo " 1. John Hansen's NeXTTool (1.2.1.r5) from BricxCC 3.0"
+    echo "    - Required for downloading .rxe binaries to the NXT"
+    echo "    - Required for downloading .rfw firmware to the NXT"
+    echo " 2. Roman Shaposhnik's LibNXT (0.3) (requires Docker)"
+    echo "    - Optional for downloading .rfw firmware to the NXT"
+    echo "    - Required for rambooting programs on the NXT"
+    echo ""
+    echo "The following repository will be downloaded into $repo_dir:" 
+    echo "  URL=$url"
+    echo "  BRANCH=$branch"
+    echo ""
+    echo "Then, the following script will be run:"
+    echo "  $install_cmd"
+    echo ""
+    if ! confirmation_prompt; then return; fi;
+    echo ""
+
+    echo "Downloading repository: $name"
+    cd "$tmp_dir"
+    git_latest "$url" "$branch"
+    cd "$repo_dir"
+
+    echo "Running command: $install_cmd"
+    bash "./$install_cmd"
+    cd "$original_dir"
+
+    rm -rf "$repo_dir"
+}
+
+
+# BLUETOOTH
+function install_bluetooth() {
+    local -a packages=(
+        bluetooth bluez
+    )
+    echo ""
+    echo "Bluetooth support allows remote control of the NXT"
+    echo "and remote program download."
+    echo ""
+    echo "The following APT packages will be installed:" 
+    echo "  ${packages[@]}"
+    echo ""
+    if ! confirmation_prompt; then return; fi;
+    echo ""
+
+    echo "Installing Bluetooth support..."
+    sudo apt-get update
+    sudo apt-get install -y --no-install-recommends ${packages[@]}
+}
 

@@ -13,7 +13,7 @@ sources=(   "$script_dir/bash-common-scripts/common-functions.sh"
             "$script_dir/bash-common-scripts/common-io.sh"
             "$script_dir/bash-common-scripts/common-sysconfig.sh"
             "$script_dir/bash-common-scripts/wsl-functions.sh"
-            "$script_dir/installation-routines.sh"                     )
+            "$script_dir/installation-routines.sh"                 )
 for i in "${sources[@]}"; do
     if [ ! -e "$i" ]; then
         echo "Error - could not find required source: $i"
@@ -53,29 +53,18 @@ unset options
 unset fncalls
 declare -A options
 declare -A fncalls; 
-options[1]="Install prerequisites"
+options[1]="Install Prerequisites"
 fncalls[1]="install_prerequisites"
-options[2]="Install Files"
-fncalls[2]="install_files"
-options[3]="Enable Services"
-fncalls[3]="enable_services"
+options[2]="Install USBIP Service (WSL2 only)"
+fncalls[2]="install_wsl_usb"
+options[3]="Install Docker"
+fncalls[3]="install_docker"
+options[4]="Install NXTOSEK Toolchain"
+fncalls[4]="install_toolchain"
+options[5]="Build NXT Tools"
+fncalls[5]="install_nxt_tools"
+options[6]="Add Bluetooth Support (Optional)"
+fncalls[6]="install_bluetooth"
 
 function_select_menu options fncalls "$title" "$description"
-
-echo "
-The following scripts have been installed in \"$INSTALL_DIR\":
-  usbip-list
-  usbip-attach
-  usbip-detach
-
-Make sure you have downloaded and installed the latest version of USB-IP on Windows:
-  https://github.com/dorssel/usbipd-win/releases
-
-Please edit the config file to choose what devices to auto-attach to WSL:
-  sudo nano /etc/default/usbip-automount
-
-Then, restart your machine. Both 'udev' and 'usbip-automount' services should now start automatically.
-"
-
-# ***************************************
 
